@@ -41,13 +41,12 @@ public class PlayerController {
         return "index";
     }
 
-    // @GetMapping("/edit/{id}")
-    // public String showUpdateForm(@PathVariable("id") int player_number, Model model) {
-    //     Player player = playerRepository.findById(player_number)
-    //         .orElseThrow(() -> new IllegalArgumentException("Invalid Jersey Number:" + player_number));
-    //     model.addAttribute("player", player);
-    //     return "update-player";
-    // }
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable(value="id") int player_number, Model model) throws ResourceNotFoundException{
+        Player player = playerRepository.findById(player_number).orElseThrow(() -> new ResourceNotFoundException("Invalid Jersey Number:" + player_number));
+        model.addAttribute("player", player);
+        return "update-player";
+    }
 
     @GetMapping("/delete/{id}")
     public String deletePlayer(@PathVariable(value="id") int player_number, Model model) throws ResourceNotFoundException {
@@ -60,10 +59,21 @@ public class PlayerController {
     @PostMapping("/add")
     public String addPlayer(@Validated Player player, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add-student";
+            return "add-player";
         }
         playerRepository.save(player);
         return "redirect:list";
+    }
+
+    @PostMapping("update/{id}")
+    public String updatePlayer(@PathVariable(value="id") int player_number, @Validated Player player, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            player.setPlayer_number(player_number);
+            return "update-player";
+        }
+        playerRepository.save(player);
+        model.addAttribute("players", playerRepository.findAll());
+        return "index";
     }
 
 }
