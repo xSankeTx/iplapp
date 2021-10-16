@@ -43,8 +43,8 @@
                                         <td th:text="${player.player_salary_in_cr}"></td>
                                         <td th:text="${player.number_of_ads}"></td>
                                         <td th:text="${player.number_of_matches}"></td>
-                                        <td><a th:href="@{/players/edit/{player_number}(id=${player.player_number})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                        <td><a th:href="@{/players/delete/{player_number}(id=${player.player_number})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                        <td><a th:href="@{/players/edit/{id}(id=${player.player_number})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                        <td><a th:href="@{/players/delete/{id}(id=${player.player_number})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                                     </tr>
                                 </tbody>
                             </table>

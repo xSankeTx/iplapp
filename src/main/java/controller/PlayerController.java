@@ -1,10 +1,14 @@
 package controller;
 
+//import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,29 +30,40 @@ public class PlayerController {
     @Autowired
     private PlayerRepository playerRepository;
 
+    @GetMapping("/signup")
+    public String showSignUpForm(Player player) {
+        return "add-player";
+    }
+
     @GetMapping("/list")
     public String showUpdateForm(Model model) {
         model.addAttribute("players", playerRepository.findAll());
         return "index";
     }
 
-    // @GetMapping("/edit/{player_number}")
-    // public String showUpdateForm(@PathVariable("player_number") int player_number, Model model) {
+    // @GetMapping("/edit/{id}")
+    // public String showUpdateForm(@PathVariable("id") int player_number, Model model) {
     //     Player player = playerRepository.findById(player_number)
     //         .orElseThrow(() -> new IllegalArgumentException("Invalid Jersey Number:" + player_number));
     //     model.addAttribute("player", player);
     //     return "update-player";
     // }
 
-    // @GetMapping("/delete/{player_number}")
-    // public String deleteStudent(@PathVariable("player_number") int player_number, Model model) {
-    //     Player player = playerRepository.findById(player_number)
-    //         .orElseThrow(() -> new IllegalArgumentException("Invalid jersey number:" + player_number));
-    //     playerRepository.delete(player);
-    //     model.addAttribute("players", playerRepository.findAll());
-    //     return "index";
-    // }
+    @GetMapping("/delete/{id}")
+    public String deletePlayer(@PathVariable(value="id") int player_number, Model model) throws ResourceNotFoundException {
+        Player player = playerRepository.findById(player_number).orElseThrow(() -> new ResourceNotFoundException("Player not found: " + player_number));
+        playerRepository.delete(player);
+        model.addAttribute("players", playerRepository.findAll());
+        return "index";
+    }
 
-
+    @PostMapping("/add")
+    public String addPlayer(@Validated Player player, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "add-student";
+        }
+        playerRepository.save(player);
+        return "redirect:list";
+    }
 
 }
