@@ -30,8 +30,8 @@ public class PlayerController {
     @Autowired
     private PlayerRepository playerRepository;
 
-    @GetMapping("/signup")
-    public String showSignUpForm(Player player) {
+    @GetMapping("/add")
+    public String showAddForm(Player player) {
         return "add-player";
     }
 
@@ -56,7 +56,7 @@ public class PlayerController {
         return "index";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addplayer")
     public String addPlayer(@Validated Player player, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "add-player";
