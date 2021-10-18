@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import exception.ResourceNotFoundException;
 import model.Player;
 import repository.PlayerRepository;
+import repository.ScheduleRepository;
 
 
 @Controller
@@ -29,10 +30,18 @@ public class PlayerController {
 
     @Autowired
     private PlayerRepository playerRepository;
+    @Autowired
+    private ScheduleRepository scheduleRepository;
 
     @GetMapping("/add")
     public String showAddForm(Player player) {
         return "add-player";
+    }
+
+    @GetMapping("/schedule")
+    public String showSchedule(Model model) {
+        model.addAttribute("schedules", scheduleRepository.findAll());
+        return "timetable";
     }
 
     @GetMapping("/list")
