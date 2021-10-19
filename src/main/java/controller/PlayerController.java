@@ -47,7 +47,7 @@ public class PlayerController {
     @GetMapping("/list")
     public String showUpdateForm(Model model) {
         model.addAttribute("players", playerRepository.findAll());
-        return "index";
+        return "view-player";
     }
 
     @GetMapping("/edit/{id}")
@@ -62,7 +62,7 @@ public class PlayerController {
         Player player = playerRepository.findById(player_number).orElseThrow(() -> new ResourceNotFoundException("Player not found: " + player_number));
         playerRepository.delete(player);
         model.addAttribute("players", playerRepository.findAll());
-        return "index";
+        return "view-player";
     }
 
     @PostMapping("/addplayer")
@@ -82,7 +82,7 @@ public class PlayerController {
         }
         playerRepository.save(player);
         model.addAttribute("players", playerRepository.findAll());
-        return "index";
+        return "view-player";
     }
 
 }
