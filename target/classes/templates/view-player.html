@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <style>
         .carousel-item{
     height: 100vh;
@@ -354,8 +354,8 @@ p.text-center{
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-			<a href="/">
-              <img src="../static/images/logo.jpg" th:src="@{images/logo.jpg}" class="img-responsive" alt="" width="170" height="60">
+			<a href="/players/home">
+              <img th:src="@{/images/logo.jpg}" class="img-responsive" alt="" width="170" height="60">
             </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -374,7 +374,7 @@ p.text-center{
                 </li>
 				
 				<li class="nav-item">
-                    <a class="nav-link" href="#">Log out</a>
+                    <a class="nav-link" href="/loginpage">Log out</a>
                 </li>
 
           </ul>

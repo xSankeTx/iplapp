@@ -1,9 +1,12 @@
 exception/ErrorDetails.class
-model/Schedule.class
-repository/ScheduleRepository.class
-exception/ResourceNotFoundException.class
-model/Player.class
+repository/UserRepository.class
+controller/AppController.class
 exception/GlobalExceptionHandler.class
 controller/PlayerController.class
 repository/PlayerRepository.class
 com/accelya/iplapp/IplappApplication.class
+model/Schedule.class
+repository/ScheduleRepository.class
+exception/ResourceNotFoundException.class
+model/Player.class
+model/User.class

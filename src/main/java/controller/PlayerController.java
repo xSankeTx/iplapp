@@ -33,6 +33,12 @@ public class PlayerController {
     @Autowired
     private ScheduleRepository scheduleRepository;
 
+    @GetMapping("/home")
+    public String showHome(Player player) {
+        return "home";
+    }
+    
+
     @GetMapping("/add")
     public String showAddForm(Player player) {
         return "add-player";

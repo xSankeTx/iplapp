@@ -1,0 +1,40 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>IPL 2021</title>
+     <link rel="stylesheet" th:href="@{/css/loginstyle.css}">
+
+</head>
+<body>
+   <div class="center">
+      <h1>Sign Up</h1>
+      <form  th:action="@{/save}" th:object="${user}"method="post">
+         <div class="txt_field">
+			<label>Email</label><br>
+            <input type="email" th:field="*{email}" required>
+            
+         </div>
+         <div class="txt_field">
+			<label>Password</label><br>
+            <input type="password" th:field="*{password}" required>
+         </div>
+		 <div class="txt_field">
+			<label>First Name</label><br>
+            <input type="text" th:field="*{firstName}" required>
+			</div>
+		 <div class="txt_field">
+			<label>Last Name</label><br>
+            <input type="text" th:field="*{lastName}" required>
+         </div>
+         <input type="submit" value="Sign Up">
+      </form>
+	  <p><a href="/loginpage">Login</a></p>
+      <div class="space"></div>
+   </div>
+</body>
+</html>
